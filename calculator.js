@@ -5,6 +5,8 @@ const app = express();
 
 app.use(bodyParser.urlencoded({extended: true}))
 
+
+// index.html
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
@@ -19,6 +21,21 @@ app.post('/', function(req, res){
   res.send("The result of the calculation is " + result);
 });
 
+// bmiCalculator.html
+app.get('/bmicalculator', function(req, res){
+  res.sendFile(__dirname + '/bmiCalculator.html');
+});
+
+app.post('/bmicalculator', function(req, res){
+  var weight = Number(req.body.weight);
+  var height = Number(req.body.height);
+
+  var result = weight / (height * height);
+
+  res.send("The result of the calculation is " + result);
+});
+
+// Set the port for the local host
 app.listen(3000, function(){
   console.log("Server is running on port 3000.");
 });
